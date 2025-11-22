@@ -29,7 +29,7 @@ function askQuestion() {
     for (const [key, func] of Object.entries(commands)) {
       if (commandArr[0] === key) {
         func(commandArr);
-        if(rl) askQuestion();
+        if(key !== "exit") askQuestion();
         return;
       }
     }
