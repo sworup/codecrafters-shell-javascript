@@ -7,7 +7,7 @@ const buitinCommands = (rl) => {
   };
 
   const type = ([_command, ...args] = []) => {
-    for (const key in commands) {
+    for (const key in _command) {
       if (args[0] === key) {
         console.log(`${key} is a shell builtin`);
         return;
@@ -31,7 +31,7 @@ const buitinCommands = (rl) => {
   const exit = () => {
     rl.close();
   };
-  
+
   return { echo, type, exit };
 };
 
