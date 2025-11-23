@@ -1,5 +1,5 @@
 import {rl, commands } from "./commands.js";
-import { execFile } from "child_process";   
+import { spawnSync } from "child_process";   
 
 
 function askQuestion() {
