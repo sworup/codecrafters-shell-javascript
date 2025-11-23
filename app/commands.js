@@ -36,7 +36,16 @@ const buitinCommands = (rl) => {
     console.log(process.cwd());
   };
 
-  return { echo, type, exit, pwd };
+  const cd = ([_command, ...args] = []) => {
+    const dir = args[0];
+    try {
+      process.chdir(dir);
+    } catch (err) {
+      console.log(`cd: ${err.message}`);
+    }
+  }
+
+  return { echo, type, exit, pwd, cd };
 };
 
 export default buitinCommands;
