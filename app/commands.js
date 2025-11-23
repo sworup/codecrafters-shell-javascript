@@ -1,17 +1,12 @@
-import { createInterface } from "readline";
 import { delimiter, join } from "path";
 import fs from "fs";
 
-const rl = createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const commands = {
-  echo: ([_command, ...args] = []) => {
+const buitinCommands = (rl) => {
+  const echo = ([_command, ...args] = []) => {
     console.log(args.join(" "));
-  },
-  type: ([_command, ...args] = []) => {
+  };
+
+  const type = ([_command, ...args] = []) => {
     for (const key in commands) {
       if (args[0] === key) {
         console.log(`${key} is a shell builtin`);
@@ -31,10 +26,13 @@ const commands = {
     }
 
     console.log(`${args[0]}: not found`);
-  },
-  exit: () => {
+  };
+
+  const exit = () => {
     rl.close();
-  },
+  };
+  
+  return { echo, type, exit };
 };
 
-export { commands, rl };
+export default buitinCommands;

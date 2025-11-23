@@ -1,9 +1,14 @@
-import {rl, commands } from "./commands.js";
+import buitinCommands from "./commands.js";
 import { spawnSync } from "child_process";   
 
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 function askQuestion() {
   rl.question("$ ",  (answer) => {
+    const commands = buitinCommands(rl);
     const commandArr = answer.trim().split(" ");
     for (const [key, func] of Object.entries(commands)) {
       if (commandArr[0] === key) {
