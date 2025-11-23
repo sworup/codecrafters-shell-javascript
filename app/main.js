@@ -1,5 +1,6 @@
 const readline = require("readline");
 const path = require("path");
+const fs = require("fs");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -23,7 +24,7 @@ const commands = {
     for (const p of paths) {
       const fullPath = path.join(p, args[0]);
       try {
-        require("fs").accessSync(fullPath);
+        fs.promises.accessSync(fullPath, fs.constants.X_OK);
         console.log(`${args[0]} is ${fullPath}`);
         return;
       } catch (err) {
