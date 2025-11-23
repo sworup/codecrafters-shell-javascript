@@ -39,15 +39,15 @@ const buitinCommands = (rl) => {
   const cd = ([_command, ...args] = []) => {
     let dir = args[0];
     try {
-      if (dir === '~') {
+      if (dir === "~") {
         dir = process.env.HOME;
       }
-        fs.accessSync(dir, fs.constants.F_OK);
-        process.chdir(dir);
+      fs.accessSync(dir, fs.constants.F_OK);
+      process.chdir(dir);
     } catch (err) {
       console.log(`cd: ${dir}: No such file or directory`);
     }
-  }
+  };
 
   return { echo, type, exit, pwd, cd };
 };
