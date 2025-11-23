@@ -32,7 +32,11 @@ const buitinCommands = (rl) => {
     rl.close();
   };
 
-  return { echo, type, exit };
+  const pwd = () => {
+    console.log(process.cwd());
+  };
+
+  return { echo, type, exit, pwd };
 };
 
 export default buitinCommands;
