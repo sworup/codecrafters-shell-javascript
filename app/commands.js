@@ -39,14 +39,10 @@ const buitinCommands = (rl) => {
   const cd = ([_command, ...args] = []) => {
     const dir = args[0];
     try {
-      const result = fs.accessSync(dir, fs.constants.F_OK);
-      if(result !== undefined) {
-        throw new Error(`cd: ${dir}: No such file or directory`);
-      }else{
+        fs.accessSync(dir, fs.constants.F_OK);
         process.chdir(dir);
-      }
     } catch (err) {
-      console.log(`cd: ${err.message}`);
+      console.log(`cd: ${dir}: No such file or directory`);
     }
   }
 
