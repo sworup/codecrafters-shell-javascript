@@ -1,3 +1,4 @@
+import { createInterface } from "readline";
 import buitinCommands from "./commands.js";
 import { spawnSync } from "child_process";   
 
