@@ -10,7 +10,11 @@ const rl = createInterface({
 function askQuestion() {
   rl.question("$ ",  (answer) => {
     const commands = buitinCommands(rl);
-    const commandArr = answer.trim().split(" ");
+    const commandArr =
+      answer
+        .match(/(?:[^\s'"]+|'[^']*'|"[^"]*")+/g)
+        .map(arg => arg.replace(/['"]/g, "")) || [];
+
     for (const [key, func] of Object.entries(commands)) {
       if (commandArr[0] === key) {
          func(commandArr);
@@ -20,8 +24,9 @@ function askQuestion() {
     }
     
     const args = commandArr
-      .slice(1)
-      .map((arg) => arg.replace(/^["']|["']$/g, ""));
+      .slice(1);
+
+    console.log('args', args);
     const result = spawnSync(commandArr[0], args, {
       encoding: "utf-8",
       stdio: "inherit",
