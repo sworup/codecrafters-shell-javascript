@@ -19,7 +19,8 @@ function askQuestion() {
       }
     }
     
-    const result = spawnSync(commandArr[0], commandArr.slice(1), {
+    const args = commandArr.slice(1).map(arg => arg.replace(/(^["'])|(["']$)/g, ''));
+    const result = spawnSync(commandArr[0], args, {
       encoding: "utf-8",
       stdio: "inherit",
     });
