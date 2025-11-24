@@ -26,7 +26,6 @@ function askQuestion() {
     const args = commandArr
       .slice(1);
 
-    console.log('args', args);
     const result = spawnSync(commandArr[0], args, {
       encoding: "utf-8",
       stdio: "inherit",
